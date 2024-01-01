@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// This file contains type definitions for your data.
+// It describes the shape of the data, and what data type each property should accept.
+// For simplicity of teaching, we're manually defining these types.
+// However, these types are generated automatically if you're using an ORM such as Prisma.
+
+model Revenue {
+  id      Int    @id @default(autoincrement())
+  month   String
+  revenue Int
+}
+
+model Sector {
+  id      Int       @id @default(autoincrement())
+  name    String @unique
+  Company Company[]
+}
+
+model Company {
+  id       Int    @id @default(autoincrement())
+  name     String
+  sector   Sector @relation(fields: [sectorId], references: [id])
+  sectorId Int
+}

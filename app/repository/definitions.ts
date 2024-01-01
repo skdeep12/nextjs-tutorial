@@ -31,6 +31,24 @@ export type Revenue = {
   revenue: number;
 };
 
+export type Company = {
+  id: number;
+  name: string;
+  sector?: Sector;
+  sectorId: number; 
+}
+
+export type Sector = {
+  id: number;
+  name: string;
+}
+
+export type FormattedCompanyTable = {
+  id: string;
+  name: string;
+  Sector: string;
+}
+
 export type LatestInvoice = {
   id: string;
   name: string;
